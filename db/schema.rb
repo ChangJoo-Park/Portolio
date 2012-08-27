@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120827072223) do
+ActiveRecord::Schema.define(:version => 20120827173035) do
+
+  create_table "attachments", :force => true do |t|
+    t.text     "description"
+    t.string   "file"
+    t.integer  "attachable_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "attachments", ["attachable_id"], :name => "index_attachments_on_attachable_id"
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -31,8 +41,15 @@ ActiveRecord::Schema.define(:version => 20120827072223) do
     t.string   "title"
     t.text     "description"
     t.integer  "forum_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
   end
 
 end

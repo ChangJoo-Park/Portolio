@@ -3,7 +3,8 @@
 <div id="topics">
   <% @topics.each do |topic| %>
   <div class="topic">
-    <span class="title"><%= link_to topic.title, forum_topic_path(@forum, topic) %></span> - 
+  	<span class="thumbnail"><%= image_tag topic.image(:thumb) %></span>
+  	<span class="title"><%= link_to topic.title, forum_topic_path(@forum, topic) %></span> - 
     <span class="description"><%= topic.description %></span>
   </div>
   <% end %>
