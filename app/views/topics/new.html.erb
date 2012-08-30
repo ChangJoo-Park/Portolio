@@ -1,0 +1,7 @@
+<h1>New topic</h1>
+<%= form_for([@forum, @topic],html: {multipart: true}) do |f| %>
+	<%= render 'form',f: f %>
+<% end %>
+<br/>
+
+<%= link_to 'Forum Topics', forum_topics_path(@forum) %>

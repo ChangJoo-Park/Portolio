@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @forum.title %></h1>
+
+<%= render 'topics/topic' %>
+
+<br/>
+
+<% if admin? %>
+<%= link_to 'Edit Forum', edit_forum_path(@forum) %> |
+<%= link_to 'New Topic', new_forum_topic_path(@forum) %> |
+<% end %>
+<%= link_to 'Back', forums_path %>

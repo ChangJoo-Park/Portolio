@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @topic.title %></h1>
+<% if @topic.image.exists? then %>
+	<%= image_tag @topic.image %>
+<% end %>
+<div>
+  <%= @topic.description %>
+</div>
+<div>
+	<%= @topic.updated_time %>에 작성한 글
+</div>
+<br/>
+
+<%= render 'comments/form' %>
+
+<br/>
+
+<h2> Comments </h2>
+<div id="comments">
+  <%= render @comments %>
+</div>
+
+
+<br/>
+
+<%= link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic) %> |
+<%= link_to 'Home', root_path %> |
+<%= link_to 'Forum Topics', forum_path(@forum) %>

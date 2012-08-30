@@ -1,0 +1,16 @@
+<div id="topics">
+  <ol reversed="reversed">
+  <% @topics.each do |topic| %>
+  
+    <div class="topic">
+      
+        <li><span class="title"><%= link_to topic.title, forum_topic_path(@forum, topic) %></span>
+        <span class="time"><%= topic.updated_time %></span>
+        <% if !(topic.comments.count == 0) %>
+        	<b><span class='comment'><%= topic.comments.count %></span></b></li>
+      <% end %>
+      
+    </div>
+  <% end %>
+  </ol>
+</div>
