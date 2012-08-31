@@ -2,7 +2,8 @@ BnegajiForum::Application.routes.draw do
 
   resources :static_pages
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions,   only: [:new, :create, :destroy]
+  resources :microposts, only: [:create, :destroy]
   resources :comments, :only => [:new, :create]
   resources :forums do
     resources :topics

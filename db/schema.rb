@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120830071126) do
+ActiveRecord::Schema.define(:version => 20120831164102) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -27,12 +27,21 @@ ActiveRecord::Schema.define(:version => 20120830071126) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "microposts", :force => true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
+
   create_table "topics", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "forum_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "file_name"
     t.string   "file_type"
     t.integer  "file_size"
@@ -42,6 +51,8 @@ ActiveRecord::Schema.define(:version => 20120830071126) do
     t.string   "image_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
+    t.integer  "user_id"
+    t.string   "user_name"
   end
 
   create_table "users", :force => true do |t|

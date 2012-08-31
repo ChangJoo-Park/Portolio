@@ -1,0 +1,15 @@
+<div id = "topicinfo" >
+	<h1>제목 : <%= @topic.title %></h1>
+  <table >
+  	<tr>
+	  	<th>작성자</th>
+  		<td><%= @topic.user_name %></td>
+	  </tr>
+
+  	<tr>
+	  	<th>작성일</th>
+  		<td><%= @topic.updated_time.strftime("%Y/%m/%d\n%I:%M%p") %></td>
+
+  	</tr>
+	</table>  
+</div>

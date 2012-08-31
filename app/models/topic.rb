@@ -17,20 +17,17 @@
 #
 
 class Topic < ActiveRecord::Base
-  attr_accessible :description, :forum_id, :title, :image, :updated_time
-#  attr_accessor :image_file_name
-#  attr_accessor :image_file_type
-#  attr_accessor :image_file_size
+  attr_accessible :description, :forum_id, :title, :image, :updated_time, :user_id, :user_name
 
-  has_many :comments
   
   belongs_to :forum
-
+  belongs_to :user
+	has_many :comments
   validates :title, presence: true
   validates :description, presence: true
-
-
-
+  validates :user_name, presence: true
+	validates :user_id, presence: true
+	default_scope order: 'topics.created_at DESC'
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
 end

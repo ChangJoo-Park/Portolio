@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
-
-<h1><%= @topic.title %></h1>
+<%= render "topicinfo"%>
 <% if @topic.image.exists? then %>
 	<%= image_tag @topic.image %>
 <% end %>
@@ -8,7 +7,7 @@
   <%= @topic.description %>
 </div>
 <div>
-	<%= @topic.updated_time %>에 작성한 글
+	
 </div>
 <br/>
 
@@ -23,6 +22,11 @@
 
 
 <br/>
+<h1><%= current_user %></h1>
+<h1><%= current_user.id %></h1>
+<h1><%= current_user.name %></h1>
+<h1><%= current_user.email %></h1>
+
 
 <%= link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic) %> |
 <%= link_to 'Home', root_path %> |

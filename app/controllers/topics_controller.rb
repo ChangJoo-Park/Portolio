@@ -47,7 +47,8 @@ class TopicsController < ApplicationController
     @topic = @forum.topics.create(params[:topic])
     #@topic = Topic.new(params[:topic])
     @topic.updated_time  = Time.now.to_s
-
+    @topic.user_id = current_user.id
+    @topic.user_name = current_user.name
     respond_to do |format|
       if @topic.save
         format.html { redirect_to(forum_path(@forum), :notice => 'Topic was successfully created.') }
@@ -64,6 +65,8 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
     @topic.updated_time  = Time.now.to_s
+    @topic.user_id = current_user.id
+    @topic.user_name = current_user.name
 
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
