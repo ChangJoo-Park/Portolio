@@ -19,7 +19,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-#      flash[:success] = "Welcome !"
+      #이거는 한글로 하면 안됨
+      #flash[:success] = ""
       redirect_to @user
     else
       render 'new'
@@ -27,8 +28,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    sign_out
-    redirect_to root_url
+    User.find(params[:id]).destroy
+    flash[:success] = "User destroyed."
+    redirect_to users_path
   end
   def edit
     #@user = User.find(params[:id])

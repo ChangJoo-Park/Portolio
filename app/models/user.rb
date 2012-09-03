@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   # admin validation
-  validates :admin, presence: true
+  #validates :admin, presence: true
   def feed
     # This is preliminary. See "Following users" for the full implementation.
     Micropost.where("user_id = ?", id)

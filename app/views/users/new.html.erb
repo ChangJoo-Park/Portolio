@@ -1,12 +1,23 @@
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
-
+<p align = "center"></p>
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
-      <%= render 'fields', f: f %>
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= f.label :name, "이름" %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email, "이메일"%>
+      <%= f.text_field :email %>
+
+      <%= f.label :password, "비밀번호"  %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "비밀번호 확인" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "가입하기", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>
