@@ -1,11 +1,7 @@
 <% provide(:title,'Forum')%>
 <h1> Forum list</h1>
 <% @forums.each do |forum| %>
-  <div class ="forumlist">
-    <span class="title"><b><%= link_to forum.title, forum_path(forum) %></b></span>
-    <br/>
-    <span class="description"><%= forum.description%></span><br/>
-  </div>
+  <%= button_to forum.title, forum_path(forum),method: :get,class: "btn btn-large btn-danger" %>
 <% end %>
   
 
@@ -30,7 +26,7 @@
 </table>
 
 <br />
-
-<% if admin? %>
-<%= link_to 'New Forum', new_forum_path %>
+<% if current_user.admin? %>
+  <%= current_user.admin %>
+  <%= link_to 'New Forum', new_forum_path %>
 <% end %>

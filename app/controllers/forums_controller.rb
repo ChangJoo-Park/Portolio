@@ -18,7 +18,7 @@ class ForumsController < ApplicationController
     @topics = @forum.topics
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { }# show.html.erb
       format.xml  { render :xml => @forum }
     end
   end

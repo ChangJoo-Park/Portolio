@@ -5,7 +5,8 @@
       <th style="width:300;">날짜</th>
       <th style="width:50px;">조회</th>
       <th style="width:50px;">리플</th>
-      <th style="width:600px;">제목</th>      
+      <th style="width:600px;">제목</th>
+      <th></th>      
     </tr>
   <ol reversed="reversed">
   <% @topics.each do |topic| %>
@@ -13,7 +14,7 @@
       <td><%= topic.user_name %></td>
       <td><%= topic.updated_at.strftime("%Y/%m/%d\n%I:%M%p") %></td>
       <td>--</td>
-      <td><% if !(topic.comments.count == 0) %>
+      <td><% if topic.comments.exists? %>
         <b><%= topic.comments.count %></b></td>
       <% end %>
       <td style="text-align:left"><%= link_to topic.title, forum_topic_path(@forum, topic) %></td>

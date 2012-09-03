@@ -7,7 +7,9 @@
 <br/>
 
 <% if admin? %>
+관리자 구역
 <%= link_to 'Edit Forum', edit_forum_path(@forum) %> |
-<%= link_to 'New Topic', new_forum_topic_path(@forum) %> |
 <% end %>
-<%= link_to 'Back', forums_path %>
+<div style="float:right;">
+<%= button_to '글쓰기',new_forum_topic_path(@forum),method: :get,class: "btn btn-large btn-primary" %> 
+</div>

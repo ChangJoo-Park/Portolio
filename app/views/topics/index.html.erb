@@ -1,25 +1,20 @@
 <h1>Listing topics</h1>
 <h1><%=current_user.name %></h1>
-
 <div id="topics">
   <ol reversed="reversed">
   <% @topics.each do |topic| %>
-  
     <div class="topic">
-      
         <li><span class="title"><%= link_to topic.title, forum_topic_path(@forum, topic) %></span>
         <span class="time"><%= topic.updated_time %></span>
         <% if !(topic.comments.count == 0) %>
         	<b><span class='comment'><%= topic.comments.count %></span></b></li>
       <% end %>
-      
     </div>
   <% end %>
   </ol>
 </div>
 </div>
-
 <br />
-
-<%= link_to 'New Topic', new_forum_topic_path(@forum) %> | 
-<%= link_to 'Forums', forums_path %>
+<div style="float:right;">
+<%= button_to '글쓰기', new_forum_topic_path(@forum),class: "btn btn-large btn-primary" %> 
+</div>

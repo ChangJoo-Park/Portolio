@@ -22,12 +22,14 @@
 
 
 <br/>
-<h1><%= current_user %></h1>
-<h1><%= current_user.id %></h1>
-<h1><%= current_user.name %></h1>
-<h1><%= current_user.email %></h1>
-
-
-<%= link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic) %> |
-<%= link_to 'Home', root_path %> |
-<%= link_to 'Forum Topics', forum_path(@forum) %>
+<% if current_user.admin? %>
+	<h1><%= current_user %></h1>
+	<h1><%= current_user.id %></h1>
+	<h1><%= current_user.name %></h1>
+	<h1><%= current_user.email %></h1>
+<% end %>
+<div style="float:right">
+	<%= link_to '글 수정', edit_forum_topic_path(@forum, @topic) %> |
+	<%= link_to '처음으로', root_path %> |
+	<%= link_to '목록으로', forum_path(@forum) %>
+</div>
