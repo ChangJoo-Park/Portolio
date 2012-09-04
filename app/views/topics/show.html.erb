@@ -4,7 +4,7 @@
 	<%= image_tag @topic.image %>
 <% end %>
 <div>
-  <%= @topic.description %>
+  <%= coderay(@topic.description) %>
 </div>
 <div>
 	
@@ -29,7 +29,9 @@
 	<h1><%= current_user.email %></h1>
 <% end %>
 <div style="float:right">
+<% if current_user.id.equal? @topic.user_id %>
 	<%= link_to '글 수정', edit_forum_topic_path(@forum, @topic) %> |
+<% end %>
 	<%= link_to '처음으로', root_path %> |
 	<%= link_to '목록으로', forum_path(@forum) %>
 </div>

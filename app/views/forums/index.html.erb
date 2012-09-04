@@ -1,9 +1,33 @@
 <% provide(:title,'Forum')%>
-<h1> Forum list</h1>
-<% @forums.each do |forum| %>
-  <%= button_to forum.title, forum_path(forum),method: :get,class: "btn btn-large btn-danger" %>
+<div style="width:50%;float:left;">
+  <h1> 게시판 리스트</h1>
+  <% @forums.each do |forum| %>
+    <%= button_to forum.title, forum_path(forum),method: :get,class: "btn btn-large btn-danger" %>
+  <% end %>
+</div>
+
+<div style="width:50%;float:right;">
+  <h1> 최근글 </h1>
+  <% @forums.each do |forum| %>
+    <h3> <%= forum.title%> </h3>
+    <ul>
+    <% forum.topics.each do |topic| %>
+      <% if Time.now - topic.updated_at < 200000 %>
+        <li><%= link_to topic.title, forum_topic_path(forum, topic) %></li>
+      <%end%>
+    <% end %>
+    </ul>
+  <% end %>
+  <!--<%= Forum.find(1).topics.find(20).title %>-->
+</div>
+<br />
+<% if current_user.admin? %>
+  <%= current_user.admin %>
+  <%= link_to 'New Forum', new_forum_path %>
 <% end %>
-  
+
+
+
 
 <table style="display:none">
   <tr>
@@ -24,9 +48,3 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-<% if current_user.admin? %>
-  <%= current_user.admin %>
-  <%= link_to 'New Forum', new_forum_path %>
-<% end %>

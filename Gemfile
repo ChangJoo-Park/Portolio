@@ -14,6 +14,8 @@ gem 'bootstrap-will_paginate', '0.0.6'
 # 가짜 정보 만들기
 gem 'faker', '1.0.1'
 
+#coderay
+gem 'coderay','1.0.7'
 group :development, :test do
   gem 'sqlite3'
 end

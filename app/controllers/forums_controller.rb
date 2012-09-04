@@ -4,7 +4,6 @@ class ForumsController < ApplicationController
   # GET /forums.xml
   def index
     @forums = Forum.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @forums }
@@ -27,6 +26,7 @@ class ForumsController < ApplicationController
   # GET /forums/new.xml
   def new
     @forum = Forum.new
+
 
     respond_to do |format|
       format.html # new.html.erb
