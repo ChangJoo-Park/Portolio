@@ -1,1 +1,23 @@
-<div class="comment"><%= comment.content %></div>
+	<div  style="margin-bottom:1.5em;">
+		<table style="border-bottom-style:solid;">
+			<tr>
+				<th style="text-align:left;">
+					<li style="margin-left:1.5em;padding-left:0px;font-size:1em;">
+						<% if @topic.user_name == comment.user_name %>
+							<span class="labe"><b><%= comment.user_name %></b></span>
+						<% else %>
+							<span class="label label-important"><b><%= comment.user_name %></b></span>
+						<% end %>
+					</li>
+				</th> 
+			</tr>
+		</br>
+		<tr>
+			<td width='800px', style="padding-left:2em;padding-top:2em;padding-bottom:1em;"><%= comment.content %></td>
+			<td>
+				<span class="label label-inverse"><%= comment.created_at.strftime("%Y/%m/%d\n%I:%M%p")%></span>
+			</td>
+			</tr>
+
+		</table>
+	</div>

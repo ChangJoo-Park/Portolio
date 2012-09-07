@@ -10,16 +10,23 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_area :content, :rows => 4, :cols => 60 %>
-  </div>
+  <table>
+    <tr style:"float:right;">
+      <td>
+        <div class="field">
+          <%= f.label :comment,"댓글", class: "comment" %><b/><br />
+          <%= f.text_area :content, rows: 3, cols: '120%',class: "comment" %>
+        </div>
+      </td>
+      <td>
+        <div class="actions">
+          <%= f.submit "댓글달기", class: "btn btn-large btn-primary", width: '20%'%>
+        </div>
+  </td>
+    </tr>
+  </table>
   <div class="field" style="display:none">
     <%= f.label :topic_id %><br />
     <%= f.text_field :topic_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
   </div>
 <% end %>

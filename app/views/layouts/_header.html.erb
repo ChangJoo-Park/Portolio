@@ -5,7 +5,7 @@
       <nav>
         <ul class="nav pull-right">
           <% if signed_in? %>
-            <li><%= render "layouts/forum"%></li>
+            <%= render "layouts/forum"%>
             <li><%= link_to "Users", users_path %></li>
             <li><%= render "layouts/links"%></li>
             <li id="fat-menu" class="dropdown">

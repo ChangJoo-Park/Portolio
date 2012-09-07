@@ -16,6 +16,7 @@ gem 'faker', '1.0.1'
 
 #coderay
 gem 'coderay','1.0.7'
+gem 'RedCloth'
 group :development, :test do
   gem 'sqlite3'
 end

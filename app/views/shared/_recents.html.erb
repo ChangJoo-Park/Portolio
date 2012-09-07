@@ -1,0 +1,20 @@
+<div class ="row">
+	<aside class="span6 offset2">
+<table class="span10">
+		<% Forum.all.each do |forum| %>
+			<% forum.topics.each do |topic| %>
+				<% if Time.now - topic.updated_at < 86400%>
+				<tr>
+					<th style="width:200px;"><b><%= forum.title %></b></th>
+					<td>
+						<span class="title"><%= link_to topic.title, forum_topic_path(forum, topic) %></span>
+					</td>
+				</tr>
+				<% else %>
+					<% break %>
+				<% end %>
+			<% end %>
+		<% end %>
+	</table>
+	</aside>
+</div>

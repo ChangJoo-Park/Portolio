@@ -1,9 +1,13 @@
 <% provide(:title,'Forum')%>
 <div style="width:50%;float:left;">
   <h1> 게시판 리스트</h1>
+  <table>
+    <tr>
   <% @forums.each do |forum| %>
-    <%= button_to forum.title, forum_path(forum),method: :get,class: "btn btn-large btn-danger" %>
+    <td><%= button_to forum.title, forum_path(forum),method: :get,class: "btn btn-large btn-danger" %></td>
   <% end %>
+    </tr>
+  </table>
 </div>
 
 <div style="width:50%;float:right;">
@@ -14,11 +18,10 @@
     <% forum.topics.each do |topic| %>
       <% if Time.now - topic.updated_at < 200000 %>
         <li><%= link_to topic.title, forum_topic_path(forum, topic) %></li>
-      <%end%>
+      <% end %>
     <% end %>
     </ul>
   <% end %>
-  <!--<%= Forum.find(1).topics.find(20).title %>-->
 </div>
 <br />
 <% if current_user.admin? %>

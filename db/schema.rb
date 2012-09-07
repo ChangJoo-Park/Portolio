@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120831164102) do
+ActiveRecord::Schema.define(:version => 20120907040903) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
     t.integer  "topic_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "user_name"
+    t.integer  "user_id"
   end
 
   create_table "forums", :force => true do |t|
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20120831164102) do
     t.integer  "photo_file_size"
     t.integer  "user_id"
     t.string   "user_name"
+    t.decimal  "counter"
   end
 
   create_table "users", :force => true do |t|

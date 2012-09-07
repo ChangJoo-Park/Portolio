@@ -17,7 +17,7 @@
 #
 
 class Topic < ActiveRecord::Base
-  attr_accessible :description, :forum_id, :title, :image, :updated_time, :user_id, :user_name
+  attr_accessible :description, :forum_id, :title, :image, :updated_time, :user_id, :user_name, :counter
 
   
   belongs_to :forum

@@ -14,5 +14,4 @@ class Forum < ActiveRecord::Base
   has_many :topics, order: "created_at DESC"
 
   validates :title, presence: true
-  validates :description, presence: true
 end

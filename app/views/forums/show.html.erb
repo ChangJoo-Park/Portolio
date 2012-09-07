@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @forum.title %></h1>
-
+<span style="text-align:center;"><%= raw RedCloth.new(@forum.description).to_html %></span>
 <%= render 'topics/topic' %>
+<%= will_paginate @topics %>
 
 <br/>
 

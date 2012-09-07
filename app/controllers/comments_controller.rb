@@ -46,12 +46,13 @@ class CommentsController < ApplicationController
     @topic = Topic.find(@comment.topic_id)
     #@forum = @topic.forum
     @comments = @topic.comments
-
+    @comment.user_id = current_user.id
+    @comment.user_name = current_user.name
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to(@topic, :notice => 'Comment was successfully created.') }
-        format.json { redirect_to(@comment, :notice => 'Comment was successfully created.') }
         format.js { @comments }
+        format.html { redirect_to(@topic) }
+        format.json { redirect_to(@comment) }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
         format.html { render :action => "new" }
@@ -67,7 +68,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to(@comment, :notice => 'Comment was successfully updated.') }
+        format.html { redirect_to(@comment) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -1,37 +1,33 @@
 <p id="notice"><%= notice %></p>
-<%= render "topicinfo"%>
-<% if @topic.image.exists? then %>
-	<%= image_tag @topic.image %>
-<% end %>
-<div>
-  <%= coderay(@topic.description) %>
-</div>
-<div>
-	
+	<%= render "topicinfo"%>
+<div class="hero-unit">
+	<% if @topic.image.exists? then %>
+		<%= image_tag @topic.image%>
+	<% end %>
+	<br/>
+	<br/>
+	<div>
+	  <%= raw RedCloth.new(coderay(@topic.description)).to_html %>
+	</div>
 </div>
 <br/>
-
 <%= render 'comments/form' %>
-
 <br/>
 
-<h2> Comments </h2>
 <div id="comments">
-  <%= render @comments %>
+	<ol>
+ 	 <%= render @comments %>
+	</ol>
 </div>
-
-
 <br/>
-<% if current_user.admin? %>
-	<h1><%= current_user %></h1>
-	<h1><%= current_user.id %></h1>
-	<h1><%= current_user.name %></h1>
-	<h1><%= current_user.email %></h1>
-<% end %>
-<div style="float:right">
-<% if current_user.id.equal? @topic.user_id %>
-	<%= link_to '글 수정', edit_forum_topic_path(@forum, @topic) %> |
-<% end %>
-	<%= link_to '처음으로', root_path %> |
-	<%= link_to '목록으로', forum_path(@forum) %>
+<div style="float:right;">
+	<table >
+		<tr>
+			<% if current_user.id.equal? @topic.user_id %>
+				<td><%= button_to '글 수정', edit_forum_topic_path(@forum, @topic), method: :get, class:'btn btn-mini'%></td>
+			<% end %>
+				<td><%= button_to '처음으로', root_path, method: :get, class:'btn btn-mini'%></td>
+				<td><%= button_to '목록으로', forum_path(@forum), method: :get,  class:'btn btn-mini'%></td>
+		</tr>
+	</table>
 </div>

@@ -14,8 +14,7 @@ class ForumsController < ApplicationController
   # GET /forums/1.xml
   def show
     @forum = Forum.find(params[:id])
-    @topics = @forum.topics
-
+    @topics = @forum.topics.paginate(page: params[:page])
     respond_to do |format|
       format.html { }# show.html.erb
       format.xml  { render :xml => @forum }
@@ -26,8 +25,6 @@ class ForumsController < ApplicationController
   # GET /forums/new.xml
   def new
     @forum = Forum.new
-
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @forum }
@@ -46,7 +43,7 @@ class ForumsController < ApplicationController
 
     respond_to do |format|
       if @forum.save
-        format.html { redirect_to(@forum, :notice => 'Forum was successfully created.') }
+        format.html { redirect_to(@forum) }
         format.xml  { render :xml => @forum, :status => :created, :location => @forum }
       else
         format.html { render :action => "new" }
@@ -62,7 +59,7 @@ class ForumsController < ApplicationController
 
     respond_to do |format|
       if @forum.update_attributes(params[:forum])
-        format.html { redirect_to(@forum, :notice => 'Forum was successfully updated.') }
+        format.html { redirect_to(@forum) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

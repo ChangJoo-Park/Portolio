@@ -1,4 +1,6 @@
 class TopicsController < ApplicationController
+  before_filter :signed_in_user, only: [:show,:create, :destroy]
+  before_filter :correct_user,   only: :destroy  
   before_filter :set_forums
 
   # GET /topics
@@ -17,7 +19,6 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @comments = @topic.comments.all
     @comment = @topic.comments.new
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @topic }
@@ -49,9 +50,10 @@ class TopicsController < ApplicationController
     @topic.updated_time  = Time.now.to_s
     @topic.user_id = current_user.id
     @topic.user_name = current_user.name
+    @topic.counter = 0 
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to(forum_path(@forum), :notice => 'Topic was successfully created.') }
+        format.html { redirect_to(forum_path(@forum)) }
         format.xml  { render :xml => @topic, :status => :created, :location => @topic }
       else
         format.html { render :action => "new" }
@@ -70,7 +72,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
-        format.html { redirect_to(forum_topic_path(@forum, @topic), :notice => 'Topic was successfully updated.') }
+        format.html { redirect_to(forum_topic_path(@forum, @topic)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

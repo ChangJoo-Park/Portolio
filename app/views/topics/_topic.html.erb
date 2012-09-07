@@ -1,25 +1,36 @@
 <div id="topics">
-  <table cellpadding="3"style="text-align:center">
-    <tr>
-      <th style="width:100px;">작성자</th>
-      <th style="width:300;">날짜</th>
-      <th style="width:50px;">조회</th>
-      <th style="width:50px;">리플</th>
-      <th style="width:600px;">제목</th>
-      <th></th>      
-    </tr>
+  <table class = "table table-striped">
+    <thead>
+      <tr>
+        <th style="width:100px;text-align:center;">작성자</th>
+        <th style="width:300;text-align:center;">날짜</th>
+        <th style="width:50px;text-align:center;">조회</th>
+        <th style="width:50px;text-align:center;">리플</th>
+        <th style="width:600px;text-align:center;">제목</th>
+        <th></th>      
+      </tr>
+    </thead>
   <ol reversed="reversed">
-  <% @topics.each do |topic| %>
-    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-      <td><%= topic.user_name %></td>
-      <td><%= topic.updated_at.strftime("%Y/%m/%d\n%I:%M%p") %></td>
-      <td>--</td>
-      <td><% if topic.comments.exists? %>
-        <b><%= topic.comments.count %></b></td>
+    <tbody>
+      <% @topics.each do |topic| %>
+        <tr class="<%= 'list_line'%>">
+          <% if topic.user_name == current_user.name %>
+            <td><span class="label"><%= topic.user_name %></span></td>
+          <% else %>
+            <td><span class="label label-important"><%= topic.user_name %></span></td>
+          <% end %>
+          <td><span class="label label-inverse"><%= topic.updated_at.strftime("%Y/%m/%d\n%I:%M%p") %></span></td>
+          <td><%= topic.counter %></td>
+          <td><% if topic.comments.exists? %>
+            <span class="label label-warning"><%= topic.comments.count %></span></td>
+          <% end %>
+          <td><strong><%= link_to topic.title, forum_topic_path(@forum, topic) %></strong>
+          <% if topic.image.exists? then %>
+            <%= image_tag "/images/image_up.gif" %></td>
+          <% end %>
+        </tr>
       <% end %>
-      <td style="text-align:left"><%= link_to topic.title, forum_topic_path(@forum, topic) %></td>
-    </tr>
-  <% end %>
+    </tbody>
   </ol>
   </table>
 </div>

@@ -1,14 +1,18 @@
-<div id = "topicinfo" >
-	<h1>제목 : <%= @topic.title %></h1>
-  <table >
-  	<tr>
-	  	<th>작성자</th>
-  		<td><%= @topic.user_name %></td>
-	  </tr>
+<div id = "topicinfo">
+	<h3 style="float:left;"><%= @topic.title %></h3>
 
+  <table style="float:right;" >
   	<tr>
-	  	<th>작성일</th>
-  		<td><%= @topic.updated_time.strftime("%Y/%m/%d\n%I:%M%p") %></td>
+	  	<th><b>작성자</b></th>
+  		<td><span class="label"><%= @topic.user_name %></span></td>
+	  </tr>
+  	<tr>
+	  	<th><b>작성일</b></th>
+  		<td><span class="label label-inverse"><%= @topic.updated_time.strftime("%Y/%m/%d\n%I:%M%p") %></span></td>
   	</tr>
+    <tr>
+      <th><b>조회수</b></th>
+      <td><%= @topic.counter %></td>
+    </tr>
 	</table>  
 </div>
