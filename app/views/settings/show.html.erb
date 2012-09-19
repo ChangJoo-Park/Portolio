@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Logostring:</b>
+  <%= @setting.logostring %>
+</p>
+
+<p>
+  <b>Maindescription:</b>
+  <%= @setting.maindescription %>
+</p>
+
+<p>
+  <b>Mainimageurl:</b>
+  <%= @setting.mainimageurl %>
+</p>
+
+
+<%= link_to 'Edit', edit_setting_path(@setting) %> |
+<%= link_to 'Back', settings_path %>

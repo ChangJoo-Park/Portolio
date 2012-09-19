@@ -1,27 +1,4 @@
 <% provide(:title, 'Home') %>
-<% if signed_in? %>
-  <div class="row">
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section>
-        <%= render 'shared/micropost_form' %>
-      </section>
-    </aside>
-    <div class="span8">
-      <h3>Micropost Feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
-  </div>
-  </div>  
-  <div>
-    <h3 style="text-align:center;">Recents</h3>
-    <%= render 'shared/recents' %>
-  </div>
-<% else %>
-
-
 <div class="center hero-unit">
   <%= image_tag "/images/index.jpg", class:"img-polaroid" %>
   <br/>
@@ -35,4 +12,3 @@
   <br/>
   <%= link_to "가입하기", signup_path, class: "btn btn-smmll btn-primary"%>
 </div>
-<%end%>

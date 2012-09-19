@@ -1,4 +1,6 @@
 BnegajiForum::Application.routes.draw do
+  resources :settings
+
   resources :static_pages
   resources :users
   resources :sessions,   only: [:new, :create, :destroy]
