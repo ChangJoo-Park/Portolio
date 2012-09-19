@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(:version => 20120907040903) do
     t.string   "title"
     t.text     "description"
     t.integer  "forum_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "file_name"
     t.string   "file_type"
     t.integer  "file_size"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20120907040903) do
     t.integer  "photo_file_size"
     t.integer  "user_id"
     t.string   "user_name"
-    t.decimal  "counter"
+    t.integer  "counter"
   end
 
   create_table "users", :force => true do |t|

@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 	<%= render "topicinfo"%>
-<div class="hero-unit">
+<div>
 	<% if @topic.image.exists? then %>
 		<%= image_tag @topic.image%>
 	<% end %>
 	<br/>
 	<br/>
-	<div>
+	<div class="hero-unit">
 	  <%= raw RedCloth.new(coderay(@topic.description)).to_html %>
 	</div>
 </div>

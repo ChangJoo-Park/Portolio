@@ -13,7 +13,8 @@ gem 'bootstrap-sass','2.0.4'
 gem 'bootstrap-will_paginate', '0.0.6'
 # 가짜 정보 만들기
 gem 'faker', '1.0.1'
-
+# font face
+gem 'font-awesome-sass-rails','2.0.0.0'
 #coderay
 gem 'coderay','1.0.7'
 gem 'RedCloth'
