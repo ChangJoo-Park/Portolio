@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_filter :signed_in_user, only: [:show,:create, :destroy]
-  before_filter :correct_user,   only: :destroy  
+
   before_filter :set_forums
 
   # GET /topics
@@ -88,7 +88,7 @@ class TopicsController < ApplicationController
     @topic.destroy
 
     respond_to do |format|
-      format.html { redirect_to(topics_url) }
+      format.html { redirect_to(:back) }
       format.xml  { head :ok }
     end
   end
@@ -97,5 +97,4 @@ class TopicsController < ApplicationController
     def set_forums
       @forum = Forum.find(params[:forum_id])
     end
-
 end

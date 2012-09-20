@@ -3,7 +3,10 @@ class SettingsController < ApplicationController
   # GET /settings.json
   def index
     @settings = Setting.all
-
+    @forums = Forum.all
+    @topics = Topic.all
+    @comments = Comment.all
+    @users = User.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @settings }
