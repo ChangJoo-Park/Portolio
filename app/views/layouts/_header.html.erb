@@ -1,7 +1,12 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "B4", root_path, id: "logo" %> 
+      <% if Setting.exists? %>
+        <%= link_to Setting.first.logostring, root_path, id: "logo" %>
+      <% else %>
+        <%= link_to "Empty", root_path, id: "logo" %>   
+      <% end %>
+      
       <nav>
         <ul class="nav pull-right">
           <% if signed_in? %>
@@ -14,7 +19,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Profile", current_user %></li>
-                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+                <li><%= link_to "User Edit", edit_user_path(current_user) %></li>
                 <li><%= link_to "Homepage Setting", settings_path %></li>
                 <li class="divider"></li>
                 <li>

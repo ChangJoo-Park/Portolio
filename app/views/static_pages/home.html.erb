@@ -3,10 +3,24 @@
   <%= image_tag "/images/index.jpg", class:"img-polaroid" %>
   <br/>
   <br/>
-  <h1>B4</h1>
+  <h1>
+    <% if Setting.exists? %>
+      <%= Setting.first.logostring %>
+    <% else %>
+      Empty
+    <% end %>
+  </h1>
   <blockquote>
 	  <h3>
-	  	You will experience whatever you can imagine.
+      <% if Setting.exists? %>
+        <%= Setting.first.maindescription %>
+      <% else %>
+        <% if signed_in? %>
+        <%= link_to "Setting Your pages.", settings_path %>
+        <% else %>
+          Sign up and Sign in -> Make your pages.
+        <% end %> 
+      <% end %>
 	  </h3>
 	</blockquote>
   <br/>
