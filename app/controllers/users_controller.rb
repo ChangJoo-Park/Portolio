@@ -13,14 +13,15 @@ class UsersController < ApplicationController
 	
 	def new
     @user = User.new
-	end
+  end
 
   def create
     @user = User.new(params[:user])
+    if @user.email == "admin@admin.user"
+      @user.admin = true
+    end
     if @user.save
       sign_in @user
-      #이거는 한글로 하면 안됨
-      #flash[:success] = ""
       redirect_to @user
     else
       render 'new'
@@ -64,5 +65,8 @@ class UsersController < ApplicationController
     end
     def admin_user
       redirect_to(root_path) unless current_user.admin?
+    end
+    def set_admin_user
+      
     end
 end

@@ -10,5 +10,9 @@
 	  </h3>
 	</blockquote>
   <br/>
-  <%= link_to "가입하기", signup_path, class: "btn btn-smmll btn-primary"%>
+  <% if signed_in? %>
+    <%= current_user.name  %> Welcome.
+  <% else %>
+    <%= link_to "가입하기", signup_path, class: "btn btn-smmll btn-primary"%>
+  <% end %>
 </div>
