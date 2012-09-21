@@ -1,6 +1,10 @@
 <% provide(:title, 'Home') %>
 <div class="center hero-unit">
-  <%= image_tag "/images/index.jpg", class:"img-polaroid" %>
+  <% if Setting.exists? %>
+    <%= raw RedCloth.new(Setting.first.mainimageurl).to_html %>
+  <% else %>
+  
+  <% end %>
   <br/>
   <br/>
   <h1>

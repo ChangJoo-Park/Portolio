@@ -1,32 +1,93 @@
-<div class="center container">
-  <h1>Forums</h1>
-  <%= link_to 'New Forums', new_forum_path %><br/>
-
-  <% Forum.all.each do |forum| %>
-    <tr>
-      <td><%= forum.title %></td>
-      <td><%= forum.description %></td>
-      <td><%= link_to 'Show', forum %></td>
-      <td><%= link_to 'Edit', edit_forum_path(forum) %></td>
-      <td><%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr><br/>
+<h1>Settings</h1>
+<div style="float:right;">
+  <% if Setting.exists? %>
+    <%= link_to '기본설정', edit_setting_path(1),class:"btn btn-primary" %>
+  <% else %>
+    <%= link_to '기본설정', new_setting_path,class:"btn btn-primary" %>
   <% end %>
 </div>
-<br/>
-<div class="center container">
-  <h1>Topics</h1>
-
-  <% Forum.all.each do |forum| %>
-    <% forum.topics.each do |topic| %>
+<div id = "settingsummary">
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= forum.title %></td>
-        <td><%= topic.title %></td>
-        <td><%= topic.description %></td>
-        <td><%= link_to 'Show',forum_topic_path(forum, topic) %></td>
-        <td><%= link_to 'Edit', edit_forum_topic_path(forum,topic) %></td>
-        <td><%= link_to 'Destroy', forum_topic_path(forum,topic), method: :delete, data: { confirm: 'Are you sure?' } %>
-      </tr><br/>
-    <% end %>
-  <% end %>
+        <th>메뉴 수</th>
+        <th>게시글 수</th>
+        <th>사용자 수</th>
+        <th>댓글 수</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= Forum.count %></td>
+        <td><%= Topic.count %></td>
+        <td><%= User.count %></td>
+        <td><%= Comment.count %></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<br/>
+
+
+<div class = "settingleft">
+    <h3>Forums</h3><%= link_to 'New Forums', new_forum_path %>
+    <table>
+    <% Forum.all.each do |forum| %>
+      <tr>
+        <td><h4><%= forum.title %></h4></td>
+        <td><%= button_to 'Show', forum, method: :get,class: "btn btn-primary" %></td>
+        <td><%= button_to 'Edit', edit_forum_path(forum), method: :get, class: "btn btn-warning" %></td>
+        <td><%= button_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+    </table>
+</div>
+
+<div class= "settingright">
+    <h3>Topics</h3><br/>
+    <table>
+    <% Forum.all.each do |forum| %>
+      <% forum.topics.each do |topic| %>
+        <tr>
+          <td><h5><%= topic.title %></h5></td>
+          <td><%= link_to 'Show',forum_topic_path(forum, topic), method: :get,class: "btn btn-primary" %></td>
+          <td><%= link_to 'Edit', edit_forum_topic_path(forum,topic), method: :get,class: "btn btn-warning" %></td>
+          <td><%= link_to 'Destroy', forum_topic_path(forum,topic), method: :delete, data: { confirm: 'Are you sure?' } , method: :get,class: "btn btn-danger"%>
+        </tr>
+      <% end %>
+    <% end %>
+   </table>
+</div>
+
+<div class= "settingleft">
+    <h3>Comments</h3><br/>
+    <table>
+    <% Forum.all.each do |forum| %>
+      <% forum.topics.each do |topic| %>
+        <% topic.comments.each do |comment| %>
+          <tr>
+            <td><h5><%= comment.content %></h5></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+   </table>
+</div>
+
+<div class = "settingright">
+  <h3>Users</h3>
+  <table>
+    <% User.all.each do |user| %>
+      <tr>
+        <td><h4><%= user.name %></h4></td>
+        <td><%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" }, class:"btn btn-danger" %></td>
+        <td>
+          <% if user.admin == false %>
+            not admin
+          <% else %>
+            admin
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

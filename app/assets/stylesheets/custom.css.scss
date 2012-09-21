@@ -219,3 +219,32 @@ aside {
 }
 
 
+#settingsummary{
+  background: #ffeeaa;
+}
+
+.newlist{
+  float: right;
+}
+.settingright{
+  border-style: solid;
+  border-top-color: #F03;
+  border-left-color: #FFFFFF;
+  border-right-color: #FFFFFF;
+  border-bottom-color: #FFFFFF;
+  margin-bottom: 10px;
+  width: 48%;
+  height: 200px;
+  float: right;
+}
+.settingleft{
+  border-style: solid;
+  border-top-color: #F03;
+  border-left-color: #FFFFFF;
+  border-right-color: #FFFFFF;
+  border-bottom-color: #FFFFFF;
+  width: 48%;
+  height: 200px; 
+  float: left;
+  margin-bottom: 10px;
+}
