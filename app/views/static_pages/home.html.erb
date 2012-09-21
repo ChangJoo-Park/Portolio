@@ -34,3 +34,25 @@
     <%= link_to "가입하기", signup_path, class: "btn btn-smmll btn-primary"%>
   <% end %>
 </div>
+
+
+<div class="span9">
+  <table class="<%= cycle("odd", "even") %>">
+  <% if Forum.exists? %>
+    <% Forum.first.topics.each do |topic| %>
+      <tr>
+      <% if topic.image.exists? %>
+        <td><%= image_tag topic.image, class:"thumbnail span3 offset2" %></td>
+        <td><h4 class= "span6"><%= topic.description%></h4></td>
+      <% end %>
+      </tr>
+      <tr>
+        <td><h3><%= topic.title %></h3></td>
+      </tr>
+    <% end %>
+  <% else %>
+  <% end %>
+  </table>
+</div>
+<div class="span3">
+</div>
