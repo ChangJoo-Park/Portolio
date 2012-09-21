@@ -51,9 +51,6 @@ GEM
       multi_json (~> 1.0)
     faker (1.0.1)
       i18n (~> 0.4)
-    font-awesome-sass-rails (2.0.0.0)
-      railties (>= 3.1.1)
-      sass-rails (>= 3.1.1)
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.4)
@@ -133,7 +130,6 @@ DEPENDENCIES
   coderay (= 1.0.7)
   coffee-rails (~> 3.2.1)
   faker (= 1.0.1)
-  font-awesome-sass-rails (= 2.0.0.0)
   jquery-rails
   paperclip (= 3.1.4)
   pg (= 0.14.0)

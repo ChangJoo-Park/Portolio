@@ -1,5 +1,8 @@
 @import "bootstrap";
-@import "font-awesome";
+body {
+  padding-top: 60px;
+}
+
 @import "bootstrap-responsive"; 
 
 /* mixins, variables, etc. */
@@ -16,9 +19,6 @@ html {
   overflow-y: scroll;
 }
 
-body {
-  padding-top: 60px;
-}
 
 section {
   overflow: auto;
