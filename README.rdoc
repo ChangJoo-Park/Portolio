@@ -1,261 +1,111 @@
-== Welcome to Rails
-
-Rails is a web-application framework that includes everything needed to create
-database-backed web applications according to the Model-View-Control pattern.
-
-This pattern splits the view (also called the presentation) into "dumb"
-templates that are primarily responsible for inserting pre-built data in between
-HTML tags. The model contains the "smart" domain objects (such as Account,
-Product, Person, Post) that holds all the business logic and knows how to
-persist themselves to a database. The controller handles the incoming requests
-(such as Save New Account, Update Product, Show Post) by manipulating the model
-and directing data to the view.
-
-In Rails, the model is handled by what's called an object-relational mapping
-layer entitled Active Record. This layer allows you to present the data from
-database rows as objects and embellish these data objects with business logic
-methods. You can read more about Active Record in
-link:files/vendor/rails/activerecord/README.html.
-
-The controller and view are handled by the Action Pack, which handles both
-layers by its two parts: Action View and Action Controller. These two layers
-are bundled in a single package due to their heavy interdependence. This is
-unlike the relationship between the Active Record and Action Pack that is much
-more separate. Each of these packages can be used independently outside of
-Rails. You can read more about Action Pack in
-link:files/vendor/rails/actionpack/README.html.
+== Portolio
+제 6회 공개 SW 개발자 대회 자유부문 출품작입니다.
+Portolio 팀
+서울과학기술대학교 컴퓨터 공학과 박창주, 문혜림
 
 
-== Getting Started
 
-1. At the command prompt, create a new Rails application:
-       <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
+== 프로그램 소개
+Portolio(포톨리오)는 홈페이지를 쉽게 만들 수 있는 웹 서비스 입니다.
 
-2. Change directory to <tt>myapp</tt> and start the web server:
-       <tt>cd myapp; rails server</tt> (run with --help for options)
+portolio.bat 파일을 실행하면 자동으로 필요한 파일을 다운받고 DB를 생성하며 서버를 실행합니다.
 
-3. Go to http://localhost:3000/ and you'll see:
-       "Welcome aboard: You're riding Ruby on Rails!"
+* Ruby on Rails 를 사용하기 위해 필요한 최소 프로그램:
+       www.railsinstaller.com
 
-4. Follow the guidelines to start developing your application. You can find
-the following resources handy:
+== 상세
 
-* The Getting Started Guide: http://guides.rubyonrails.org/getting_started.html
-* Ruby on Rails Tutorial Book: http://www.railstutorial.org/
+== 1. 레이아웃
+1.1 타이틀바:
+       타이틀바는 관리자 계정으로 로그인하여 수정할 수 있습니다.
+1.2 로고와 메뉴바:
+       header는 로고, 메뉴바로 이루어져있습니다.
+       로고는 설정에서 수정 할 수 있습니다.
+       메뉴바는 로그인 전은 Sign in, 로그인 후에는 메뉴 리스트와 사용자리스트, 사용자 설정으로 나뉘어 집니다.
+1.3 본문:
+       본문은 메뉴바의 항목들을 눌렀을 때 이용할 수 있습니다.
+       메인페이지에는 소개 동영상, 홈페이지 이름, 소개, 두개의 메뉴에 대한 요약을 출력합니다.
+       설정에서 추가 된 메뉴를 누르면 해당 메뉴로 들어 갈 수 있습니다.
+       모든 항목에 관한 사항은 본문에서 출력 됩니다.
 
+== 2. 전체적인 모델들의 관계
+       포럼,사용자 =-- 관리자
+         |=--  게시판
+                 |=--  댓글
+== 3.사용자
+       사용자는 이름(50자이내), 이메일(email형식), 비밀번호, 관리자권한으로 이루어져 있습니다.
+       관리자 권한을 갖는 계정은 admin@admin.user 로 계정을 생성하시면 됩니다.
+       일반유저에게 관리자 권한을 주는 기능은 추가 예정입니다. 아직은 계획에 없습니다.
+       로그인 하기 전에는 어떠한 메뉴도 볼 수 없으나
+       로그인 후에는 해당 권한에 맞는 모든 곳에 접근할 수 있습니다.
+3.1 관리자 권한:
+       관리자 권한을 갖는 사용자는 Account 메뉴에 Homepage Setting 메뉴를 확인 할 수 있습니다.
+       Homepage Setting에서는 홈페이지의 전체적인 내용들을 확인하고 수정 삭제 등을 할 수 있습니다.
+3.2 다른 구성 요소들과의 관계
+       Topic, Comment를 가질 수 있습니다.
+== 4. 게시판
+4.1 게시판의 구성
+       제목, 내용, 이미지를 입력,출력 할 수 있습니다.
+4.2 게시판 목록
+       글쓴이, 작성일, 조회수, 댓글수, 제목을 각각 출력합니다.
+       게시판 목록에서 글쓰기를 할 수 있습니다.
+       나중에 쓴 글이 맨 위에 나옵니다.
+4.3 게시판의 글 내용
+       글쓴이, 작성일, 조회수, 댓글수, 제목을 각각 출력합니다.
+       댓글을 추가할 수 있습니다.
+4.4 게시판 작성글의 삭제
+       게시판의 글의 삭제 권한은 작성자와 관리자만 가능합니다.
+4.5 댓글
+       게시글에는 댓글을 작성할 수 있습니다.
+       나중에 쓴 글이 맨 아래 나옵니다.
 
-== Debugging Rails
-
-Sometimes your application goes wrong. Fortunately there are a lot of tools that
-will help you debug it and get it back on the rails.
-
-First area to check is the application log files. Have "tail -f" commands
-running on the server.log and development.log. Rails will automatically display
-debugging and runtime information to these files. Debugging info will also be
-shown in the browser on requests from 127.0.0.1.
-
-You can also log your own messages directly into the log file from your code
-using the Ruby logger class from inside your controllers. Example:
-
-  class WeblogController < ActionController::Base
-    def destroy
-      @weblog = Weblog.find(params[:id])
-      @weblog.destroy
-      logger.info("#{Time.now} Destroyed Weblog ID ##{@weblog.id}!")
-    end
-  end
-
-The result will be a message in your log file along the lines of:
-
-  Mon Oct 08 14:22:29 +1000 2007 Destroyed Weblog ID #1!
-
-More information on how to use the logger is at http://www.ruby-doc.org/core/
-
-Also, Ruby documentation can be found at http://www.ruby-lang.org/. There are
-several books available online as well:
-
-* Programming Ruby: http://www.ruby-doc.org/docs/ProgrammingRuby/ (Pickaxe)
-* Learn to Program: http://pine.fm/LearnToProgram/ (a beginners guide)
-
-These two books will bring you up to speed on the Ruby language and also on
-programming in general.
-
-
-== Debugger
-
-Debugger support is available through the debugger command when you start your
-Mongrel or WEBrick server with --debugger. This means that you can break out of
-execution at any point in the code, investigate and change the model, and then,
-resume execution! You need to install ruby-debug to run the server in debugging
-mode. With gems, use <tt>sudo gem install ruby-debug</tt>. Example:
-
-  class WeblogController < ActionController::Base
-    def index
-      @posts = Post.all
-      debugger
-    end
-  end
-
-So the controller will accept the action, run the first line, then present you
-with a IRB prompt in the server window. Here you can do things like:
-
-  >> @posts.inspect
-  => "[#<Post:0x14a6be8
-          @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>,
-       #<Post:0x14a6620
-          @attributes={"title"=>"Rails", "body"=>"Only ten..", "id"=>"2"}>]"
-  >> @posts.first.title = "hello from a debugger"
-  => "hello from a debugger"
-
-...and even better, you can examine how your runtime objects actually work:
-
-  >> f = @posts.first
-  => #<Post:0x13630c4 @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>
-  >> f.
-  Display all 152 possibilities? (y or n)
-
-Finally, when you're ready to resume execution, you can enter "cont".
+==5. 설정
+       설정은 모든 내용들을 볼 수 있습니다.
+5.1 요약
+       요약 부분에는 메뉴, 글, 댓글, 사용자의 수를 파악 할 수 있습니다.
+       기본적인 설정(로고, 타이틀, 설명, 동영상youtube링크)를 할 수 있습니다.
+5.2 메뉴, 글, 댓글, 사용자
+       각각의 리스트에는 제목만을 표시하며 메뉴의 경우에는 생성이 가능합니다.
+       글은 보기, 수정, 삭제가 가능합니다
+       댓글은 보여지기만 합니다. 글을 삭제하면 글에 딸려있는 댓글이 삭제 됩니다.
+       사용자는 관리자를 제외한 사용자를 삭제할 수 있습니다.
 
 
-== Console
+== 사용한 Open Source Ruby-gem    // Gemfile
+source 'https://rubygems.org'
+# Ruby on Rails
+       gem 'rails', '3.2.8'
+# 이미지 사용을 위한 paperclip
+       gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
+# 모델의 Schema를 보여주는 annotate
+       gem 'annotate' git: 'git://github.com/brentgreeff/annotate.git'
+# 비밀번호 암호화를 위한 bcrypt-ruby
+       gem 'bcrypt-ruby', git: 'git://github.com/codahale/bcrypt-ruby.git'
+# 게시판등을 페이지화 하기 위한 will_paginate, bootstrap-will_paginate
+       gem 'will_paginate',git: 'git://github.com/mislav/will_paginate.git'
+       gem 'bootstrap-will_paginate', '0.0.6'
+# CSS용 Bootstrap
+       gem 'bootstrap-sass','2.0.4'
 
-The console is a Ruby shell, which allows you to interact with your
-application's domain model. Here you'll have all parts of the application
-configured, just like it is when the application is running. You can inspect
-domain models, change values, and save to the database. Starting the script
-without arguments will launch it in the development environment.
+# 가짜 정보 만들기 faker
+       gem 'faker', '1.0.1'
+# 실 사용에 필요한 서버 thin
+       gem 'thin'
+# Code Syntax Highliter coderay
+       gem 'coderay','1.0.7'
+# HTML 태그를 파싱하는 RedCloth
+       gem 'RedCloth'
+#개발과 출시용 모두 sqlite3를 사용
+       group :development, :test do
+              gem 'sqlite3'
+       end
+       group :production do
+              gem 'sqlite3'
+       end
+       group :assets do
+              gem 'sass-rails',   '~> 3.2.3'
+              gem 'coffee-rails', '~> 3.2.1'
+              gem 'uglifier', '>= 1.0.3'
+       end
 
-To start the console, run <tt>rails console</tt> from the application
-directory.
-
-Options:
-
-* Passing the <tt>-s, --sandbox</tt> argument will rollback any modifications
-  made to the database.
-* Passing an environment name as an argument will load the corresponding
-  environment. Example: <tt>rails console production</tt>.
-
-To reload your controllers and models after launching the console run
-<tt>reload!</tt>
-
-More information about irb can be found at:
-link:http://www.rubycentral.org/pickaxe/irb.html
-
-
-== dbconsole
-
-You can go to the command line of your database directly through <tt>rails
-dbconsole</tt>. You would be connected to the database with the credentials
-defined in database.yml. Starting the script without arguments will connect you
-to the development database. Passing an argument will connect you to a different
-database, like <tt>rails dbconsole production</tt>. Currently works for MySQL,
-PostgreSQL and SQLite 3.
-
-== Description of Contents
-
-The default directory structure of a generated Ruby on Rails application:
-
-  |-- app
-  |   |-- assets
-  |       |-- images
-  |       |-- javascripts
-  |       `-- stylesheets
-  |   |-- controllers
-  |   |-- helpers
-  |   |-- mailers
-  |   |-- models
-  |   `-- views
-  |       `-- layouts
-  |-- config
-  |   |-- environments
-  |   |-- initializers
-  |   `-- locales
-  |-- db
-  |-- doc
-  |-- lib
-  |   `-- tasks
-  |-- log
-  |-- public
-  |-- script
-  |-- test
-  |   |-- fixtures
-  |   |-- functional
-  |   |-- integration
-  |   |-- performance
-  |   `-- unit
-  |-- tmp
-  |   |-- cache
-  |   |-- pids
-  |   |-- sessions
-  |   `-- sockets
-  `-- vendor
-      |-- assets
-          `-- stylesheets
-      `-- plugins
-
-app
-  Holds all the code that's specific to this particular application.
-
-app/assets
-  Contains subdirectories for images, stylesheets, and JavaScript files.
-
-app/controllers
-  Holds controllers that should be named like weblogs_controller.rb for
-  automated URL mapping. All controllers should descend from
-  ApplicationController which itself descends from ActionController::Base.
-
-app/models
-  Holds models that should be named like post.rb. Models descend from
-  ActiveRecord::Base by default.
-
-app/views
-  Holds the template files for the view that should be named like
-  weblogs/index.html.erb for the WeblogsController#index action. All views use
-  eRuby syntax by default.
-
-app/views/layouts
-  Holds the template files for layouts to be used with views. This models the
-  common header/footer method of wrapping views. In your views, define a layout
-  using the <tt>layout :default</tt> and create a file named default.html.erb.
-  Inside default.html.erb, call <% yield %> to render the view using this
-  layout.
-
-app/helpers
-  Holds view helpers that should be named like weblogs_helper.rb. These are
-  generated for you automatically when using generators for controllers.
-  Helpers can be used to wrap functionality for your views into methods.
-
-config
-  Configuration files for the Rails environment, the routing map, the database,
-  and other dependencies.
-
-db
-  Contains the database schema in schema.rb. db/migrate contains all the
-  sequence of Migrations for your schema.
-
-doc
-  This directory is where your application documentation will be stored when
-  generated using <tt>rake doc:app</tt>
-
-lib
-  Application specific libraries. Basically, any kind of custom code that
-  doesn't belong under controllers, models, or helpers. This directory is in
-  the load path.
-
-public
-  The directory available for the web server. Also contains the dispatchers and the
-  default HTML files. This should be set as the DOCUMENT_ROOT of your web
-  server.
-
-script
-  Helper scripts for automation and generation.
-
-test
-  Unit and functional tests along with fixtures. When using the rails generate
-  command, template test files will be generated for you and placed in this
-  directory.
-
-vendor
-  External libraries that the application depends on. Also includes the plugins
-  subdirectory. If the app has frozen rails, those gems also go here, under
-  vendor/rails/. This directory is in the load path.
+       gem 'jquery-rails'
