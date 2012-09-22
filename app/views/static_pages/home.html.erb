@@ -2,6 +2,8 @@
 <div class="center hero-unit">
   <% if Setting.exists? %>
     <%= raw RedCloth.new(Setting.first.mainimageurl).to_html %>
+  <% else %>
+    <h3>기본 설정 후 이미지 및 동영상이 출력되는 곳 입니다.</h3>
   <% end %>
   <h1>
     <% if Setting.exists? %>
@@ -13,7 +15,7 @@
   <blockquote>
 	  <h3>
       <% if Setting.exists? %>
-        <%= Setting.first.maindescription %>
+        <%= raw nl2br(Setting.first.maindescription) %>
       <% else %>
         <% if signed_in? %>
         <%= link_to "Setting Your pages.", settings_path %>
@@ -31,40 +33,45 @@
 </div>
 <div class = "row">
   <div class="span12">
-    <div class="span8">
-      <table class="<%= cycle("odd", "even") %>">
+    <div class="span8 topicleft">
+      <table class="<%= cycle("odd", "even") %>" >
       <% if Forum.exists? %>
         <h3 class="center"><%=Forum.first.title %></h3>
+        
         <% Forum.first.topics.each do |topic| %>
-          
           <% if topic.image.exists? %>
             <tr>
-              <td><h3><%= topic.title %></h3></td><br/>
+              <td><h3><%= topic.title %></h3></td>
             </tr>
             <tr>
-              <td class="span3"><%= image_tag topic.image, class:"thumbnail" %></td>
-              <td class="span5 offset1 topicdescription"><h4>  <%= topic.description%></h4></td>
-            </tr><br/>
+              <td ><%= image_tag topic.image,class:"thumbnail span2"%></td>
+              <td class="span8 offset3 topicdescription"><h4>  <%= raw nl2br(topic.description)%></h4></td>
+            </tr>
           <% end %>
+          
         <% end %>
-      <% else %>
+        </ul>
+        <% else %>
+          <h3>첫번째 메뉴를 생성하면 정보를 볼 수 있습니다.</h3>
       <% end %>
       </table>
     </div>
-    <div class="span3">  
-      <% @topics =Forum.find(:first,order:"id",offset: 1) %>
+    <div class="span3 topicright">  
       <table>
-        <h3 class ="center"><%=@topics.title%></h3>
-        <% @topics.topics.each do |topic| %>
-          <tr>
-            <td><%= topic.title %></td>
-          </tr>
-          <tr>
-            <td><%= topic.description %></td>
-          </tr>
+        <% if Forum.find(:first,order:"id",offset:1)%>
+          <h3 class ="center"><%=Forum.find(:first,order:"id",offset:1).title%></h3>
+            <% Forum.find(:first,order:"id",offset:1).topics.each do |topic| %>
+              <tr>
+                <td style="float:right; color:red;"><h5><%= topic.title %></h5></td>
+              </tr>
+              <tr>
+                <td style="float:left;"><h4><%= topic.description %></h4></td>
+              </tr>
+            <% end %>
+        <% else %>
+          <h3> 두번째 메뉴를 생성하면 정보를 볼 수 있습니다.</h3>
         <% end %>
       </table>
-
     </div>
   </div>
 </div>

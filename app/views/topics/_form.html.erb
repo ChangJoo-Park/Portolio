@@ -11,16 +11,16 @@
 <% end %>
 
 <div class="field">
-  <%= f.label :title %><br />
+  <%= f.label :title ,"제목"%><br />
   <%= f.text_field :title %>
 </div>
 <div class="field">
-  <%= f.label :description %><br />
+  <%= f.label :description, "내용" %><br />
   <%= f.text_area :description, :rows => 4, :cols => 60 %>
 </div>
 <div class = "field">
   <%= f.label :image,"이미지" %>
-  <%= f.file_field :image %>
+  <%= f.file_field :image, rows:5, cols:10 %>
 
 </div>
 

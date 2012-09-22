@@ -9,8 +9,7 @@
 
 <div class ="span3"style="float:right;">
 <% if admin? %>
-관리자 구역
-<%= link_to 'Edit Forum', edit_forum_path(@forum) %> |
+<%= link_to 'Edit Forum', edit_forum_path(@forum) %> 
 <% end %>
 
 <%= button_to '글쓰기',new_forum_topic_path(@forum),method: :get,class: "btn btn-large btn-primary" %> 

@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     end
     if @user.save
       sign_in @user
-      redirect_to @user
+      redirect_to settings_path
     else
       render 'new'
     end

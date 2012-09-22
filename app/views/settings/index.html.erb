@@ -1,4 +1,4 @@
-<h1>Settings</h1>
+<h1>Homepage Setting</h1>
 <div style="float:right;">
   <% if Setting.exists? %>
     <%= link_to '기본설정', edit_setting_path(1),class:"btn btn-primary" %>
@@ -29,7 +29,7 @@
 
 
 <div class = "settingleft">
-    <h3>Forums</h3><%= link_to 'New Forums', new_forum_path %>
+    <h3>메뉴</h3><%= link_to '새 메뉴', new_forum_path ,class:"btn btn-small btn-primary"%>
     <table>
     <% Forum.all.each do |forum| %>
       <tr>
@@ -43,7 +43,7 @@
 </div>
 
 <div class= "settingright">
-    <h3>Topics</h3><br/>
+    <h3>게시글</h3><br/>
     <table>
     <% Forum.all.each do |forum| %>
       <% forum.topics.each do |topic| %>
@@ -59,7 +59,7 @@
 </div>
 
 <div class= "settingleft">
-    <h3>Comments</h3><br/>
+    <h3>댓글</h3><br/>
     <table>
     <% Forum.all.each do |forum| %>
       <% forum.topics.each do |topic| %>
@@ -74,19 +74,14 @@
 </div>
 
 <div class = "settingright">
-  <h3>Users</h3>
+  <h3>사용자</h3>
   <table>
     <% User.all.each do |user| %>
       <tr>
         <td><h4><%= user.name %></h4></td>
+        <% if current_user.admin == false %>
         <td><%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" }, class:"btn btn-danger" %></td>
-        <td>
-          <% if user.admin == false %>
-            not admin
-          <% else %>
-            admin
-          <% end %>
-        </td>
+        <% end %>
       </tr>
     <% end %>
   </table>

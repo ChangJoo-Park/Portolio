@@ -3,7 +3,7 @@ module ApplicationHelper
 		true
 	end
   def full_title
-    base_title = "Portolio"
+    base_title = "Empty"
     if Setting.empty?
       base_title
     else
@@ -15,5 +15,9 @@ module ApplicationHelper
       CodeRay.scan($3, $2).div(:css => :class)
     end
   end
+  def nl2br(s)
+    s.gsub(/\n/, '<br>')
+  end
+
 
 end

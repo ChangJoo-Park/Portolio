@@ -10,28 +10,6 @@
   </table>
 </div>
 
-<div style="width:50%;float:right;">
-  <h1> 최근글 </h1>
-  <% @forums.each do |forum| %>
-    <h3> <%= forum.title%> </h3>
-    <ul>
-    <% forum.topics.each do |topic| %>
-      <% if Time.now - topic.updated_at < 200000 %>
-        <li><%= link_to topic.title, forum_topic_path(forum, topic) %></li>
-      <% end %>
-    <% end %>
-    </ul>
-  <% end %>
-</div>
-<br />
-<% if current_user.admin? %>
-  <%= current_user.admin %>
-  <%= link_to 'New Forum', new_forum_path %>
-<% end %>
-
-
-
-
 <table style="display:none">
   <tr>
     <th>Title</th>
