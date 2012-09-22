@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 	<%= render "topicinfo"%>
+	<% @topic.increment!(:counter) %>
 <div>
 	<% if @topic.image.exists? then %>
 		<%= image_tag @topic.image%>
