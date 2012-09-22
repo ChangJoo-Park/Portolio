@@ -28,7 +28,7 @@
 </div>
 
 
-<div class = "settingleft">
+<div class="setting">
     <h3>메뉴</h3><%= link_to '새 메뉴', new_forum_path ,class:"btn btn-small btn-primary"%>
     <table>
     <% Forum.all.each do |forum| %>
@@ -42,7 +42,7 @@
     </table>
 </div>
 
-<div class= "settingright">
+<div class="setting">
     <h3>게시글</h3><br/>
     <table>
     <% Forum.all.each do |forum| %>
@@ -55,10 +55,11 @@
         </tr>
       <% end %>
     <% end %>
+
    </table>
 </div>
 
-<div class= "settingleft">
+<div class="setting">
     <h3>댓글</h3><br/>
     <table>
     <% Forum.all.each do |forum| %>
@@ -73,7 +74,7 @@
    </table>
 </div>
 
-<div class = "settingright">
+<div class="setting">
   <h3>사용자</h3>
   <table>
     <% User.all.each do |user| %>

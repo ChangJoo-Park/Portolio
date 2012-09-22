@@ -236,15 +236,18 @@ aside {
   width: 48%;
   float: right;
 }
-.settingleft{
+.setting{
   border-style: solid;
   border-top-color: #F03;
   border-left-color: #FFFFFF;
   border-right-color: #FFFFFF;
   border-bottom-color: #FFFFFF;
-  width: 48%;
+  width: 100%;
   float: left;
   margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
 }
 
 .odd{
