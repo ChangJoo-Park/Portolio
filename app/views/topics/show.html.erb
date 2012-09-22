@@ -2,7 +2,7 @@
 	<%= render "topicinfo"%>
 	<% @topic.increment!(:counter) %>
 <div>
-	<% if @topic.image.exists? then %>
+	<% if @topic.image.exists? %>
 		<%= image_tag @topic.image%>
 	<% end %>
 	<br/>

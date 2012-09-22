@@ -2,11 +2,7 @@
 <div class="center hero-unit">
   <% if Setting.exists? %>
     <%= raw RedCloth.new(Setting.first.mainimageurl).to_html %>
-  <% else %>
-  
   <% end %>
-  <br/>
-  <br/>
   <h1>
     <% if Setting.exists? %>
       <%= Setting.first.logostring %>
@@ -27,7 +23,6 @@
       <% end %>
 	  </h3>
 	</blockquote>
-  <br/>
   <% if signed_in? %>
     <%= current_user.name  %> Welcome.
   <% else %>
@@ -44,13 +39,12 @@
           
           <% if topic.image.exists? %>
             <tr>
-              <td><%= image_tag topic.image, class:"thumbnail span3 offset2" %></td>
-              <td><h4>  <%= topic.description%></h4></td>
+              <td><h3><%= topic.title %></h3></td><br/>
             </tr>
             <tr>
-              <td><h3><%= topic.title %></h3></td>
-              <td></td>
-            </tr>
+              <td class="span3"><%= image_tag topic.image, class:"thumbnail" %></td>
+              <td class="span5 offset1 topicdescription"><h4>  <%= topic.description%></h4></td>
+            </tr><br/>
           <% end %>
         <% end %>
       <% else %>
@@ -58,6 +52,19 @@
       </table>
     </div>
     <div class="span3">  
+      <% @topics =Forum.find(:first,order:"id",offset: 1) %>
+      <table>
+        <h3 class ="center"><%=@topics.title%></h3>
+        <% @topics.topics.each do |topic| %>
+          <tr>
+            <td><%= topic.title %></td>
+          </tr>
+          <tr>
+            <td><%= topic.description %></td>
+          </tr>
+        <% end %>
+      </table>
+
     </div>
   </div>
 </div>

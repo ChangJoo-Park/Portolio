@@ -1,2 +1,4 @@
 $(":input:not(input[type=submit])").val("");
-$("#comments").html("<%= escape_javascript( render(@comments) ) %>");
+$(document).ready(function(){
+	location.reload();
+});

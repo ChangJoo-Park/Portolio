@@ -1,16 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @forum.title %></h1>
-<span style="text-align:center;"><%= raw RedCloth.new(@forum.description).to_html %></span>
-<%= render 'topics/topic' %>
-<%= will_paginate @topics %>
-
+<div class="center span12">
+	<%= render 'topics/topic' %>
+	<%= will_paginate @topics %>
+</div>
 <br/>
 
+<div class ="span3"style="float:right;">
 <% if admin? %>
 관리자 구역
 <%= link_to 'Edit Forum', edit_forum_path(@forum) %> |
 <% end %>
-<div style="float:right;">
+
 <%= button_to '글쓰기',new_forum_topic_path(@forum),method: :get,class: "btn btn-large btn-primary" %> 
 </div>
