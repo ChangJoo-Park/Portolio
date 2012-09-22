@@ -1,4 +1,5 @@
 @echo off
+cls
 @echo 제 6회 공개 SW 개발자대회 
 @echo Portolio(포톨리오) 설치 프로그램입니다.
 @echo 서울과학기술대학교
