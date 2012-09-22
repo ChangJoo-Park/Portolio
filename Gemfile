@@ -13,8 +13,7 @@ gem 'bootstrap-sass','2.0.4'
 gem 'bootstrap-will_paginate', '0.0.6'
 # 가짜 정보 만들기
 gem 'faker', '1.0.1'
-# font face
-
+gem 'thin'
 #coderay
 gem 'coderay','1.0.7'
 gem 'RedCloth'
@@ -22,7 +21,7 @@ group :development, :test do
   gem 'sqlite3'
 end
 group :production do
-  gem 'pg', '0.14.0'
+  gem 'sqlite3'
 end
 # Gems used only for assets and not required
 # in production environments by default.

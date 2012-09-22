@@ -1,0 +1,13 @@
+  <div class="setting">
+      <h3>메뉴</h3><%= link_to '새 메뉴', new_forum_path ,class:"btn btn-small btn-primary"%>
+      <table>
+      <% Forum.all.each do |forum| %>
+        <tr>
+          <td><h4><%= forum.title %></h4></td>
+          <td><%= button_to 'Show', forum, method: :get,class: "btn btn-primary" %></td>
+          <td><%= button_to 'Edit', edit_forum_path(forum), method: :get, class: "btn btn-warning" %></td>
+          <td><%= button_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+      </table>
+  </div>

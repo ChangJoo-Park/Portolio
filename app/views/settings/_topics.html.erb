@@ -1,0 +1,15 @@
+  <div class="setting">
+      <h3>게시글</h3><br/>
+      <table>
+      <% Forum.all.each do |forum| %>
+        <% forum.topics.each do |topic| %>
+          <tr>
+            <td><h5><%= topic.title %></h5></td>
+            <td><%= link_to 'Show',forum_topic_path(forum, topic), method: :get,class: "btn btn-primary" %></td>
+            <td><%= link_to 'Edit', edit_forum_topic_path(forum,topic), method: :get,class: "btn btn-warning" %></td>
+            <td><%= link_to 'Destroy', forum_topic_path(forum,topic), method: :delete, data: { confirm: 'Are you sure?' } , method: :get,class: "btn btn-danger"%>
+          </tr>
+        <% end %>
+      <% end %>
+     </table>
+  </div>

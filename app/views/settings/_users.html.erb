@@ -1,0 +1,13 @@
+  <div class="setting">
+    <h3>사용자</h3>
+    <table>
+      <% User.all.each do |user| %>
+        <tr>
+          <td><h4><%= user.name %></h4></td>
+          <% if current_user.admin == false %>
+          <td><%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" }, class:"btn btn-danger" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>

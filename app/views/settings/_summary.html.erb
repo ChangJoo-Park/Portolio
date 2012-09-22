@@ -1,0 +1,27 @@
+  <div style="float:right;">
+    <% if Setting.exists? %>
+      <%= link_to '기본설정', edit_setting_path(1),class:"btn btn-primary" %>
+    <% else %>
+      <%= link_to '기본설정', new_setting_path,class:"btn btn-primary" %>
+    <% end %>
+  </div>
+  <div id = "settingsummary">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>메뉴 수</th>
+          <th>게시글 수</th>
+          <th>사용자 수</th>
+          <th>댓글 수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= Forum.count %></td>
+          <td><%= Topic.count %></td>
+          <td><%= User.count %></td>
+          <td><%= Comment.count %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

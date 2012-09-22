@@ -1,0 +1,14 @@
+  <div class="setting">
+      <h3>댓글</h3><br/>
+      <table>
+      <% Forum.all.each do |forum| %>
+        <% forum.topics.each do |topic| %>
+          <% topic.comments.each do |comment| %>
+            <tr>
+              <td><h5><%= comment.content %></h5></td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+     </table>
+  </div>
