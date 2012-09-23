@@ -7,7 +7,16 @@
         <%= link_to "Empty", root_path, id: "logo" %>   
       <% end %>
       
-      <nav>
+
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <!-- Be sure to leave the brand out there if you want it shown -->
+      <!-- Everything you want hidden at 940px or less, place within here -->      
+      <div  class="nav-collapse">
         <ul class="nav pull-right">
           <% if signed_in? %>
             <%= render "layouts/forum"%>
@@ -30,7 +39,7 @@
             <li><%= link_to "Sign in", signin_path %></li>
           <% end %>    
         </ul>
-      </nav>
+      </div>
     </div>
   </div>
 </header>
